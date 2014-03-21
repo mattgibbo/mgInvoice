@@ -17,43 +17,42 @@
 
     <section class="pad-xl">
         <h1 class="h-l clr-main--txt ls-1"><i aria-hidden="true" class="fa fa-coffee clr-alt--txt"></i> mgInvoice Install</h1>
-        <p class="ts-xl breadcrumb pad-l rounded">Installing mgInvoice is simple, just fill in the form below and you'll be good to go!</p>
+        <p class="ts-xl breadcrumb pad-l rounded span-4">Installing mgInvoice is simple, just fill in the form below and you'll be good to go!</p>
 
         <form>
-            <div class="frm-row mar-v-b">
-                <label class="frm-label va-m">Business Name:</label>
-                <input type="text" placeholder="Enter your business name here" class="frm-inp-txt va-m span-3" /><br /><br />
-                <span class="frm-helper frm-off ts-xs">This will be the default billing name, you can change this in the settings later.</span>
+            <div class="frm-row row">
+                <label class="frm-label col span-1">Business Name:</label>
+                <input type="text" placeholder="Enter your business name here" class="frm-inp-txt va-m col span-3" /><br /><br />
+                <span class="frm-helper col off-1 span-3 ts-xs">This will be the default billing name, you can change this in the settings later.</span>
             </div>
 
-            <div class="frm-row">
-                <label class="frm-label va-m">Your Name:</label>
-                <input type="text" placeholder="Enter your own name here" class="frm-inp-txt va-m span-3" />
+            <div class="frm-row row">
+                <label class="frm-label col span-1">Your Name:</label>
+                <input type="text" placeholder="Enter your own name here" class="frm-inp-txt va-m col span-3" />
             </div>
 
-            <div class="frm-row">
-                <label class="frm-label va-m">Address:</label>
-                <input type="text" placeholder="" class="frm-inp-txt va-m span-3" />
+            <div class="frm-row row">
+                <label class="frm-label col span-1">Address:</label>
+                <input type="text" placeholder="" class="frm-inp-txt va-m col span-3" />
             </div>
 
-            <div class="frm-row">
-                <label class="frm-label"></label>
-                <input type="text" placeholder="" class="frm-inp-txt va-m span-3" />
+            <div class="frm-row row">
+                <input type="text" placeholder="" class="frm-inp-txt va-m col off-1 span-3" />
             </div>
 
-            <div class="frm-row">
-                <label class="frm-label">City</label>
-                <input type="text" placeholder="" class="frm-inp-txt va-m span-3" />
+            <div class="frm-row row">
+                <label class="frm-label col span-1">City</label>
+                <input type="text" placeholder="" class="frm-inp-txt va-m col span-3" />
             </div>
 
-            <div class="frm-row">
-                <label class="frm-label">County</label>
-                <input type="text" placeholder="" class="frm-inp-txt va-m span-3" />
+            <div class="frm-row row">
+                <label class="frm-label col span-1">County</label>
+                <input type="text" placeholder="" class="frm-inp-txt va-m col span-3" />
             </div>
 
-            <div class="frm-row">
-                <label class="frm-label va-m">Country</label>
-                <select class="frm-inp-txt va-m span-3">
+            <div class="frm-row row">
+                <label class="frm-label col span-1">Country</label>
+                <select class="frm-inp-txt va-m col span-3">
                     <option value="uk">United Kingdom</option>
                 </select>
             </div>
