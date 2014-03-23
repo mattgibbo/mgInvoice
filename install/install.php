@@ -40,6 +40,7 @@
     </header>
 
     <?php
+
         if($_POST['install']) {
             // Explode the name into an array for displaying later
             $name = explode(' ', $_POST['inpName']);
@@ -103,21 +104,34 @@
             $sth->execute();
     ?>
 
-    <section class="wrapper">
-        <h1 class="h-m">Congratulations <?php echo $name[0]; ?>!</h1>
-        <p class="ts-l">You have successfully installed <strong>mgInvoice</strong> and you're now ready to start creating and billing clients, building your bank balance and easily tracking your income for accounting and tax purposes.</p>
+    <section class="bg-white">
+        <div class="wrapper row">
+            <span class="col span-6">
+                <img src="/images/install/pigs.jpg" alt="Piggy" />
+            </span>
 
-        <h2 class="h-s h-section--2 mar-v tw-l">Pick an option below to get started:</h2>
+            <span class="col off-1 span-5 ts-l">
+                <h1 class="h-m">Congratulations <?php echo $name[0]; ?>!</h1>
+                <p>You have successfully installed <strong>mgInvoice</strong> and you're now ready to start creating and billing clients, building your bank balance and easily tracking your income for accounting and tax purposes.</p>
+                <p>Thanks for downloading adn using mgInvoice! Please now delete the <strong>/install</strong> folder in the interests of security.</p>
+            </span>
+        </div>
+    </section>
 
-        <a href="" class="dis-ib pad-l ta-c tc-alt ts-l">
-            <i aria-hidden="true" class="fa fa-3x fa-file-text tc-main"></i>
-            <div class="mar-v-t-s">Prepare an invoice</div>
-        </a>
+    <section>
+        <div class="wrapper">
+            <h2 class="h-s h-section--2 mar-v tw-l">Pick an option below to get started:</h2>
 
-        <a href="" class="dis-ib pad-l ta-c tc-alt ts-l">
-            <i aria-hidden="true" class="fa fa-3x fa-users tc-main"></i>
-            <div class="mar-v-t-s">Add some clients</div>
-        </a>
+            <a href="/invoices/new" class="dis-ib pad-l ta-c tc-alt ts-l">
+                <i aria-hidden="true" class="fa fa-3x fa-file-text tc-main"></i>
+                <div class="mar-v-t-s">Prepare an invoice</div>
+            </a>
+
+            <a href="/clients/new" class="dis-ib pad-l ta-c tc-alt ts-l">
+                <i aria-hidden="true" class="fa fa-3x fa-users tc-main"></i>
+                <div class="mar-v-t-s">Add a client or two</div>
+            </a>
+        </div>
     </section>
 
     <?php } else { ?>
@@ -132,50 +146,51 @@
             <div class="mar-v col span-6 pad-xl">
 
                 <h2 class="h-s h-section--2">Personal Details</h2>
+
                 <div class="frm-row row">
-                    <label class="frm-label col span-3">Business Name:</label>
+                    <label class="frm-label col span-3">Business Name</label>
                     <input type="text" name="inpBusiness" placeholder="Enter your business name here" class="frm-inp-txt col span-8" />
                 </div>
 
                 <div class="frm-helper dis-ib mar-v-b off-3 span-8 ts-xs">This will be the default billing name, you can change this in the settings later.</div>
 
                 <div class="frm-row row">
-                    <label class="frm-label col span-3">Your Name:</label>
+                    <label class="frm-label col span-3">Your Name</label>
                     <input type="text" name="inpName" placeholder="Enter your own name here" class="frm-inp-txt va-m col span-8" />
                 </div>
 
                 <div class="frm-row row">
                     <label class="frm-label col span-3">Email Address</label>
-                    <input type="text" name="inpEmail" placeholder="" class="frm-inp-txt va-m col span-8" />
+                    <input type="text" name="inpEmail" class="frm-inp-txt va-m col span-8" />
                 </div>
 
                 <div class="frm-row row">
-                    <label class="frm-label col span-3">Address:</label>
-                    <input type="text" name="inpAddress1" placeholder="" class="frm-inp-txt va-m col span-8" />
+                    <label class="frm-label col span-3">Address</label>
+                    <input type="text" name="inpAddress1" class="frm-inp-txt va-m col span-8" />
                 </div>
 
                 <div class="frm-row row">
-                    <input type="text" name="inpAddress2" placeholder="" class="frm-inp-txt va-m col off-3 span-8" />
+                    <input type="text" name="inpAddress2" class="frm-inp-txt va-m col off-3 span-8" />
                 </div>
 
                 <div class="frm-row row">
                     <label class="frm-label col span-3">City</label>
-                    <input type="text" name="inpCity" placeholder="" class="frm-inp-txt va-m col span-8" />
+                    <input type="text" name="inpCity" class="frm-inp-txt va-m col span-8" />
                 </div>
 
                 <div class="frm-row row">
                     <label class="frm-label col span-3">County</label>
-                    <input type="text" name="inpCounty" placeholder="" class="frm-inp-txt va-m col span-8" />
+                    <input type="text" name="inpCounty" class="frm-inp-txt va-m col span-8" />
                 </div>
 
                 <div class="frm-row row">
                     <label class="frm-label col span-3">Post Code</label>
-                    <input type="text" name="inpPostCode" placeholder="" class="frm-inp-txt va-m col span-8" />
+                    <input type="text" name="inpPostCode" class="frm-inp-txt va-m col span-8" />
                 </div>
 
                 <div class="frm-row row">
                     <label class="frm-label col span-3">Country</label>
-                    <select name="inpCountry" class="frm-inp-txt va-m col span-3">
+                    <select name="inpCountry" class="frm-inp-txt va-m col span-4">
                         <option value="uk">United Kingdom</option>
                     </select>
                 </div>
@@ -193,7 +208,7 @@
                     <select name="inpBillingCycle" class="frm-inp-txt va-m col span-3">
                         <option value="0">Manual</option>
                         <option value="1">Weekly</option>
-                        <option value="2" selected>Fortnightly</option>
+                        <option value="2" selected="selected">Fortnightly</option>
                         <option value="4">Monthly</option>
                         <option value="13">Quarterly</option>
                         <option value="26">Half Yearly</option>
@@ -206,7 +221,7 @@
                     <select name="inpBillingMethod" class="frm-inp-txt va-m col span-3">
                         <option value="BankTransfer">Bank Transfer</option>
                         <option value="Cash">Cash</option>
-                        <option value="Cheque" selected>Cheque</option>
+                        <option value="Cheque" selected="selected">Cheque</option>
                         <option value="PayPal">PayPal</option>
                     </select>
                 </div>

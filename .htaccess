@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteBase /
+
+# Invoices
+RewriteRule ^invoices/new?$ invoices.php?cmd=new [L]
+
+# Clients
+RewriteRule ^clients/new?$ clients.php?cmd=new [L]
