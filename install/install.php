@@ -92,12 +92,12 @@
             $sth->bindValue(':county', $_POST['inpCounty'], PDO::PARAM_STR);
             $sth->bindValue(':postCode', $_POST['inpPostCode'], PDO::PARAM_STR);
             $sth->bindValue(':country', $_POST['inpCountry'], PDO::PARAM_STR);
-            $sth->bindValue(':billCycle', $_POST['inpBillingCycle'], PDO::PARAM_STR);
+            $sth->bindValue(':billCycle', $_POST['inpBillingCycle'], PDO::PARAM_INT);
             $sth->bindValue(':billMethod', $_POST['inpBillingMethod'], PDO::PARAM_STR);
-            $sth->bindValue(':taxYearStartDay', $_POST['inpTaxYearStartDay'], PDO::PARAM_STR);
-            $sth->bindValue(':taxYearStartMonth', $_POST['inpTaxYearStartMonth'], PDO::PARAM_STR);
-            $sth->bindValue(':taxYearEndDay', $_POST['inpTaxYearEndDay'], PDO::PARAM_STR);
-            $sth->bindValue(':taxYearEndMonth', $_POST['inpTaxYearEndMonth'], PDO::PARAM_STR);
+            $sth->bindValue(':taxYearStartDay', $_POST['inpTaxYearStartDay'], PDO::PARAM_INT);
+            $sth->bindValue(':taxYearStartMonth', $_POST['inpTaxYearStartMonth'], PDO::PARAM_INT);
+            $sth->bindValue(':taxYearEndDay', $_POST['inpTaxYearEndDay'], PDO::PARAM_INT);
+            $sth->bindValue(':taxYearEndMonth', $_POST['inpTaxYearEndMonth'], PDO::PARAM_INT);
 
             // Execute statement
             $sth->execute();
