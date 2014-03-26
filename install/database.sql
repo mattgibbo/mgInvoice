@@ -9,6 +9,22 @@ CREATE TABLE IF NOT EXISTS `mgi_settings` (
   PRIMARY KEY (`settingName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Create billing methods table
+CREATE TABLE IF NOT EXISTS `mgi_billing_methods` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `method` varchar(13) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- Create billing types table
+CREATE TABLE IF NOT EXISTS `mgi_billing_types` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 -- Create the clients table
 CREATE TABLE IF NOT EXISTS `mgi_clients` (
   `clientId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
