@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS `mgi_clients` (
   `postCode` varchar(8) DEFAULT NULL,
   `country` char(3) DEFAULT NULL,
   `billRateAmount` float(6,2) NOT NULL,
-  `billRateType` varchar(11) NOT NULL DEFAULT 'Hourly',
+  `billRateType` varchar(11) NOT NULL DEFAULT '2',
   `billCycle` char(2) NOT NULL DEFAULT '4',
-  `billMethod` varchar(16) NOT NULL DEFAULT 'Cheque',
+  `billMethod` varchar(16) NOT NULL DEFAULT '3',
   `billCurrency` char(3) NOT NULL DEFAULT 'GBP',
   PRIMARY KEY (`clientId`),
   UNIQUE KEY `clientId` (`clientId`)
@@ -49,5 +49,6 @@ CREATE TABLE IF NOT EXISTS `mgi_clients_contacts` (
   `clientId` smallint(5) unsigned NOT NULL,
   `contactName` varchar(32) DEFAULT NULL,
   `contactEmail` varchar(32) DEFAULT NULL,
-  `contactType` char(7) NOT NULL DEFAULT 'main'
+  `contactType` char(7) NOT NULL DEFAULT 'main',
+  KEY `clientId` (`clientId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
