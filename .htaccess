@@ -3,6 +3,7 @@ RewriteBase /
 
 # Invoices
 RewriteRule ^invoices/new?$ invoices.php?cmd=new [L]
+RewriteRule ^invoices/new/([0-9]+)?$ invoices.php?cmd=new&client=$1 [L]
 
 # Clients
 RewriteRule ^clients/new?$ clients.php?cmd=new [L]
