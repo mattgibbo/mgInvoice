@@ -1,0 +1,161 @@
+.wrap {
+    max-width: 100%;
+    width: 100%;
+}
+
+.nav--side {
+    background: #333;
+    color: #FFF;
+    top:0;
+    bottom:0;
+    position:fixed;
+}
+
+.nav--side a {
+    color: #999;
+    display: block;
+    padding: 1.1em 0 .9em;
+    text-align: center;
+}
+
+.nav--side a:hover {
+    color: #fff;
+}
+
+.nav--side .active {
+    color: #fff;
+    position: relative;
+}
+
+.nav--side .active:after {
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #2f8655;
+    border-style: solid;
+    content: '';
+    position: absolute;
+    margin-top: -8px;
+    right: 0; top: 35%;
+}
+
+.nav--side svg {
+    fill: currentColor;
+    max-height: 30px;
+    display: inline-block;
+}
+
+.sidebar {
+    background: #2f8655;
+    color: #FFF;
+    top: 0;
+    bottom: 0;
+    left: 7%;
+    position: fixed;
+}
+
+main {
+    margin-left: 27%;
+}
+
+/*
+html {
+    position: relative;
+}
+
+header {
+    background-color: #b72939;
+    color: #fff;
+    padding: .55em 1em;
+}
+
+.brand {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+nav a {
+    display: block;
+    padding: .35em .85em .2em;
+}
+
+.nav--side {
+    background: #222;
+    color: #ccc;
+    padding: .5em 0;
+    position: absolute;
+    height: 100%;
+    width: 20%;
+}
+
+.nav--side a {
+    color: #ccc;
+}
+
+.nav--side a:hover {
+    color: #fff;
+}
+
+main {
+    margin-left: 20%;
+}
+
+.tabs ul {
+    background-color: #e5e5e5;
+    padding: 0;
+}
+
+.tabs li {
+    border-right: 1px solid #d5d5d5;
+    color: #555;
+    cursor: pointer;
+    float: left;
+    font-weight: 600;
+    list-style: none;
+    padding: .5em 1em .35em;
+}
+
+.tabs .active,
+.tabs li:hover {
+    color: #111;
+}
+
+.tabs .active {
+    background-color: #fff;
+    display: block;
+}
+
+.circle {
+    border-radius: 100%;
+}
+
+.progress--circle {
+    display: inline-block;
+    position: relative;
+}
+
+.progress--circle strong {
+    font-size: 2em;
+    line-height: 1em;
+    margin-top: -.5em;
+    position: absolute;
+    top: 50%; left: 0;
+    text-align: center;
+    width: 175px;
+}
+
+svg path {
+    fill: none;
+    stroke-width: 6;
+}
+
+svg path.ip-loader-circlebg {
+    stroke: #ddd;
+}
+
+svg path.ip-loader-circle {
+    -webkit-transition: stroke-dashoffset 2s;
+    transition: stroke-dashoffset 2s;
+    stroke: #1c9ccd;
+}
+*/

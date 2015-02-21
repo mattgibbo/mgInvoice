@@ -10,7 +10,7 @@
 
 ?>
 <!DOCTYPE html>
-<html>
+<html style="height:100%">
 <head>
     <title><?php echo $pageTitle ?> - mgInvoice</title>
 
@@ -20,98 +20,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" id="extViewportMeta">
 
     <link rel="shortcut icon" href="/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
-
-    <style>
-        select {
-            background: #FFF url("../images/select.png") right center no-repeat;
-            cursor: pointer;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -ms-appearance: none;
-            appearance: none;
-            margin-bottom: 4px;
-            padding-right: 25px;
-            text-indent: 0.01px;
-            text-overflow: '';
-            -webkit-padding-end: 30px;
-        }
-        select::-ms-expand { display: none; }
-
-        input[type="text"] {
-            background-color: #F5F5F5;
-            border-bottom: 1px dashed #CCC;
-            padding: .5em;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=NTR|PT+Sans:400,700|PT+Serif" rel="stylesheet" type="text/css" />
+    <link href="/mgui/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="css/app.css" rel="stylesheet" type="text/css" />
+    <script src="https://fontastic.s3.amazonaws.com/B48mNnSACaSSUbqtKQMaZ6/icons.js"></script>
 </head>
 <body>
 
-    <header>
-        <div class="tc-white">
-            <span class="flt-r mar-v-t">Installing mgInvoice is simple, just fill in the form below and you'll be good to go!</span>
-            <span class="h-l ls-1"><i aria-hidden="true" class="fa fa-coffee tc-main"></i> mgInvoice</span>
-        </div>
-    </header>
+    <div class="content wrap">
+        <nav class="nav--side">
+            <a href="/">
+                <svg class="icon"><use xlink:href="#icon-home"></use></svg>
+                Home
+            </a>
+            <a href="/clients.php">
+                <svg class="icon"><use xlink:href="#icon-group-full"></use></svg>
+                Clients
+            </a>
+            <a href="/invoices.php" class="active">
+                <svg class="icon"><use xlink:href="#icon-browser-window"></use></svg>
+                Invoices
+            </a>
+        </nav>
 
-    <div class="row">
-        <aside class="col span-2 pad-l" style="background:#30363E;color:#FFF;">
-            <ul class="mar-v-s">
-                <li class="mar-v-s ts-l tw-b">Invoices</li>
-                <li><i aria-hidden="true" class="fa fa-file tc-main va-0 mar-h-r-s"></i> New Invoice</li>
-                <li><i aria-hidden="true" class="fa fa-eye tc-main va-0 mar-h-r-s"></i> View Invoices</li>
-                <li><i aria-hidden="true" class="fa fa-clock-o tc-main va-0 mar-h-r-s"></i> Due Invoices</li>
+        <aside class="sidebar pad-s ts-l">
+            <ul class="nav mar-h">
+                <li class="ts-l tw-b">Invoices</li>
+                <li>Create new invoice</li>
+                <li>View and manage invoices</li>
+                <li>Due invoices</li>
             </ul>
         </aside>
 
-        <section class="col span-10">
+        <main class="pad-m" role="main">
             <?php
                 // Connect to localhost and set error mode
                 // @todo: use database settings from the install form
-                $db = new PDO('mysql:host=localhost;dbname=mginvoice', 'root', '');
+                $db = new PDO('mysql:host=localhost;dbname=mgInvoice', 'root', 'root');
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sth = $db->prepare('SELECT name, billRateAmount FROM mgi_clients WHERE clientId=:id;');
-                $sth->bindValue(':id', $_GET['client'], PDO::PARAM_INT);
-                $sth->execute();
-                
-                if ($row = $sth->fetch()) {
-                    $clientName = $row['name'];
-                    $billRate = $row['billRateAmount'];
-                }
+                if ('' === $_GET['cmd']) {
 
-                if($_POST['saveInvoice']) {
-                    foreach($_POST['row'] as $row) {
-                        echo $row['name'] , ': ' , $row['total'] , '<br />';
+                } else {
+                    $sth = $db->prepare('SELECT name, billRateAmount FROM mgi_clients WHERE clientId = :id;');
+                    $sth->bindValue(':id', $_GET['client'], PDO::PARAM_INT);
+                    $sth->execute();
+                    
+                    if ($row = $sth->fetch()) {
+                        $clientName = $row['name'];
+                        $billRate = $row['billRateAmount'];
+                    }
+
+                    // Get default date values for previous period
+                    $todayYear = date('Y');
+                    $todayMonth = date('m');
+                    $todayDay = date('d');
+
+                    if ($todayDay > 15) {
+                        $lastMonth = $todayMonth - 1;
+                        $startDate = date('Y-m-d', strtotime($todayYear . '-' . $lastMonth . '-16'));
+                        $endDate = date('Y-m-t', strtotime($todayYear . '-' . $lastMonth . '-01'));
+                    } else {
+                        $startDate = date('Y-m-d', strtotime($todayYear . '-' . $todayMonth . '-01'));
+                        $endDate = date('Y-m-d', strtotime($todayYear . '-' . $todayMonth . '-15'));
+                    }
+
+                    if($_POST['saveInvoice']) {
+                        foreach($_POST['row'] as $row) {
+                            echo $row['name'] , ': ' , $row['total'] , '<br />';
+                        }
                     }
                 }
             ?>
             <h1 class="h-m ls-1 tw-l h-section--2"><?php echo $pageTitle . ' for ' . $clientName ?></h1>
 
+            <?php
+                if ('' == $_GET['cmd']) {
+                    $sth = $db->prepare('SELECT name, billRateAmount FROM mgi_clients');
+                    $sth->execute();
+                    
+                    if ($row = $sth->fetch()) {
+                        do {
+                            echo $row['name'] . '<br />';
+                        } while ($row = $sth->fetch());
+                    }
+                    die();
+                } else {
+            ?>
             <form method="post">
                 <input type="hidden" name="saveInvoice" value="Y" />
 
-                <div class="row mar-v-b">
-                    <div class="col span-3">
+                <div class="row cols-4 mar-v-b ta-c">
+                    <div class="col">
                         <label class="mar-h-r-s tw-b va-m">Reference</label>
                         <input type="text" name="" class="frm-inp-txt va-m" />
                     </div>
 
-                    <div class="col span-3">
+                    <div class="col">
                         <label class="mar-h-r-s tw-b va-m">Start Date</label>
-                        <input type="text" name="" class="frm-inp-txt va-m" />
+                        <input type="date" name="" value="<?php echo $startDate; ?>" class="frm-inp-txt va-m" />
                     </div>
 
-                    <div class="col span-3">
+                    <div class="col">
                         <label class="mar-h-r-s tw-b va-m">End Date</label>
-                        <input type="text" name="" class="frm-inp-txt va-m" />
+                        <input type="date" name="" value="<?php echo $endDate; ?>" class="frm-inp-txt va-m" />
                     </div>
 
-                    <div class="col span-3">
+                    <div class="col">
                         <label class="mar-h-r-s tw-b va-m">Invoice Date</label>
-                        <input type="text" name="" value="<?php echo date('Y-m-d') ?>" class="frm-inp-txt va-m" />
+                        <input type="date" name="" value="<?php echo date('Y-m-d'); ?>" class="frm-inp-txt va-m" />
                     </div>
                 </div>
 
@@ -124,10 +141,10 @@
                             <th class="span-4">
                                 Description
                             </th>
-                            <th class="span-1">
+                            <th>
                                 Unit Cost
                             </th>
-                            <th class="span-1">
+                            <th>
                                 Quantity
                             </th>
                             <th class="span-2">
@@ -149,7 +166,7 @@
                             <td>
                                 <input type="text" name="row[x][qty]" autocomplete="false" value="0" class="frm-inp-txt-- w-full qty" id="qty" />
                             </td>
-                            <td>
+                            <td class="ta-c">
                                 <span class="total ts-xl">0.00</span>
                                 <input type="hidden" name="row[0][total]" id="total" />
                             </td>
@@ -168,7 +185,8 @@
                 </div>
 
             </form>
-        </section>
+            <?php } ?>
+        </main>
 
     </div>
 
@@ -190,6 +208,14 @@
                 parent.find('.total').text(itemTotal).next().val(itemTotal);
 
                 updateGrandTotal();
+            });
+
+            $('#invoiceItems').on('blur', '.rate', function(){
+                var rateVal = $(this).val();
+
+                if(2 === rateVal.length) {
+                    $(this).val(rateVal + '.00');
+                }
             });
 
             function updateGrandTotal() {

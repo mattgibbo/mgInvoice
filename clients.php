@@ -22,43 +22,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" id="extViewportMeta">
 
     <link rel="shortcut icon" href="/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
-
-    <style>
-        select {
-            background: #FFF url("../images/select.png") right center no-repeat;
-            cursor: pointer;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -ms-appearance: none;
-            appearance: none;
-            margin-bottom: 4px;
-            padding-right: 25px;
-            text-indent: 0.01px;
-            text-overflow: '';
-            -webkit-padding-end: 30px;
-        }
-        select::-ms-expand { display: none; }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=NTR|PT+Sans:400,700|PT+Serif" rel="stylesheet" type="text/css" />
+    <link href="/mgui/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="css/app.css" rel="stylesheet" type="text/css" />
+    <script src="https://fontastic.s3.amazonaws.com/B48mNnSACaSSUbqtKQMaZ6/icons.js"></script>
 </head>
 <body>
 
-    <header>
-        <div class="wrapper tc-white">
-            <strong class="h-l ls-1"><i aria-hidden="true" class="fa fa-coffee tc-main"></i> mgInvoice</strong>
-        </div>
-    </header>
+    <div class="content wrap">
+        <nav class="nav--side">
+            <a href="/">
+                <svg class="icon"><use xlink:href="#icon-home"></use></svg>
+                Home
+            </a>
+            <a href="/clients.php" class="active">
+                <svg class="icon"><use xlink:href="#icon-group-full"></use></svg>
+                Clients
+            </a>
+            <a href="/invoices.php">
+                <svg class="icon"><use xlink:href="#icon-browser-window"></use></svg>
+                Invoices
+            </a>
+        </nav>
 
-    <section class="wrapper">
+        <aside class="sidebar pad-s ts-l">
+            <ul class="nav mar-h">
+                <li class="ts-l tw-b">Clients</li>
+                <li>Add new client</li>
+                <li>Manage clients</li>
+            </ul>
+        </aside>
+
+        <main class="pad-m" role="main">
         <?php
             // Connect to localhost and set error mode
             // @todo: use database settings from the install form
-            $db = new PDO('mysql:host=localhost;dbname=mginvoice', 'root', '');
+            $db = new PDO('mysql:host=localhost;dbname=mgInvoice', 'root', 'root');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            if($_POST['addClient']) {
+            if ($_POST['addClient']) {
                 // Explode the name into an array for displaying later
                 $name = explode(' ', $_POST['inpBusiness']);
 
@@ -186,7 +188,7 @@
 
         <h1 class="h-m mar-v-b"><?php echo $pageTitle ?></h1>
 
-        <form method="post" class="wrapper">
+        <form method="post" class="wrap">
             <input type="hidden" name="addClient" value="Y" />
 
             <div class="row h-section--2">
@@ -235,7 +237,7 @@
 
                     <div class="frm-row row">
                         <label class="frm-label col span-3">Country</label>
-                        <select name="inpCountry" class="frm-inp-txt va-m col span-4">
+                        <select name="inpCountry" class="frm-inp-txt va-m col span-6">
                             <option value="USA">United States of America</option>
                         </select>
                     </div>
@@ -329,6 +331,6 @@
 
         <?php } ?>
 
-    </section>
+    </main>
 </body>
 </html>

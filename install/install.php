@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" id="extViewportMeta">
 
     <link rel="shortcut icon" href="/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,900|Open+Sans:300,400italic,400,600" rel="stylesheet" type="text/css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=NTR|PT+Sans:400,700|PT+Serif" rel="stylesheet" type="text/css" />
+    <link href="/mgui/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="../css/app.css" rel="stylesheet" type="text/css" />
 
     <style>
         select {
@@ -33,7 +33,7 @@
 <body>
 
     <header>
-        <div class="wrapper tc-white">
+        <div class="wrap tc-white">
             <span class="flt-r mar-v-t">Installing mgInvoice is simple, just fill in the form below and you'll be good to go!</span>
             <h1 class="h-l ls-1"><i aria-hidden="true" class="fa fa-coffee tc-main"></i> mgInvoice Install</h1>
         </div>
@@ -47,7 +47,7 @@
 
             // Connect to localhost and set error mode
             // @todo: add database settings to the install form
-            $db = new PDO('mysql:host=localhost', '', '');
+            $db = new PDO('mysql:host=localhost', 'root', 'root');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Create the database and use it
@@ -105,7 +105,7 @@
     ?>
 
     <section class="bg-white">
-        <div class="wrapper row">
+        <div class="wrap row">
             <span class="col span-6">
                 <img src="/images/install/pigs.jpg" alt="Piggy" />
             </span>
@@ -119,7 +119,7 @@
     </section>
 
     <section>
-        <div class="wrapper">
+        <div class="wrap">
             <h2 class="h-s h-section--2 mar-v tw-l">Pick an option below to get started:</h2>
 
             <a href="/invoices/new" class="dis-ib pad-l ta-c tc-alt ts-l">
@@ -138,12 +138,12 @@
 
     <span class="msg"></span>
 
-    <form method="post" class="wrapper">
+    <form method="post" class="wrap">
         <input type="hidden" name="install" value="Y" />
 
-        <div class="row h-section--2 mar-v">
+        <div class="row cols-2 mar-v">
 
-            <div class="mar-v col span-6 pad-xl">
+            <div class="mar-v col pad-m">
 
                 <h2 class="h-s h-section--2">Personal Details</h2>
 
@@ -197,7 +197,7 @@
 
             </div>
 
-            <div class="mar-v col span-6">
+            <div class="mar-v col pad-m">
 
                 <h2 class="h-s h-section--2">Billing Information</h2>
                 
@@ -300,7 +300,7 @@
                 });
 
                 if(emptyInputs < 0) {
-                    $('.msg').replaceWith('<div class="error pad-l"><p class="wrapper">You missed a few! Please fill in all of the fields below before submitting the form.</p></div>');
+                    $('.msg').replaceWith('<div class="error pad-l"><p class="wrap">You missed a few! Please fill in all of the fields below before submitting the form.</p></div>');
                 } else {
                     $('form').submit();
                 }
